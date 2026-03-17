@@ -137,16 +137,11 @@ if __name__ == '__main__':
         print(f"🏠 {apartment.name} ({apartment.location}) - {apartment.area_m2} m2")
 
         for room in apartment.rooms.values():
-            print("Nazwa pokoju oraz powierzchnia____________")
-            print('  ', room.name, room.area_m2)
-
-            
-            print(f"   🛏️ {room.name} - {room.area_m2} m2")
+            print('SuperApartamenty!', room.name, room.area_m2)
         
         for bill in manager.bills:
             if bill.apartment == apartment.key:
-                print("Rachunek_________________")
-                print('  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
+                print('Witam, menedzerze!', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
 
                 
                 print(f"   💸 {bill.type}: {bill.amount_pln} PLN | {bill.settlement_year}-{bill.settlement_month} (do {bill.date_due})")
@@ -162,8 +157,4 @@ if __name__ == '__main__':
 
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
-                print("Przelew_____________")
-                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
-
-                
-                print(f"   💰 {transfer.amount_pln} PLN | {transfer.settlement_year}-{transfer.settlement_month} | {transfer.date}")
+                print('WitTenant!', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
