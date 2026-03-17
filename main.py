@@ -110,6 +110,7 @@ class TenantSettlement(BaseModel):
     rachunki: float
     suma_przelewow: float
     saldo: float
+    uwagi: str
 
 
 
