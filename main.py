@@ -91,6 +91,7 @@ class ApartmentSettlement(BaseModel):
     rents_amount_pln: float
     remaining_amount_pln: float
 
+
 class Manager:
     def __init__(self, parameters: Parameters):
         self.parameters = parameters 
@@ -108,6 +109,7 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
+
 class TenantSettlement(BaseModel):
     najemca: str
     miesiac: int
@@ -121,22 +123,25 @@ class TenantSettlement(BaseModel):
     antoni_glupek: str
 
 
-
 if __name__ == '__main__':
     parameters = Parameters()
     manager = Manager(parameters)
 
+    print("\n=== APARTAMENTY ===")
     for apartment in manager.apartments.values():
-        print(apartment.key, apartment.name, apartment.location, apartment.area_m2)
+        print(f"\n🏠 {apartment.name} ({apartment.location}) - {apartment.area_m2} m2")
+
         for room in apartment.rooms.values():
-            print('  ', room.name, room.area_m2)
+            print(f"   🛏️ {room.name} - {room.area_m2} m2")
         
         for bill in manager.bills:
             if bill.apartment == apartment.key:
-                print('  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
+                print(f"   💸 {bill.type}: {bill.amount_pln} PLN (do {bill.date_due})")
 
+    print("\n=== NAJEMCY ===")
     for tenant in manager.tenants.values():
-        print(tenant.name, tenant.apartment, tenant.room, tenant.rent_pln, tenant.deposit_pln, tenant.date_agreement_from, tenant.date_agreement_to)
+        print(f"\n👤 {tenant.name} | pokój: {tenant.room} | czynsz: {tenant.rent_pln} PLN")
+        
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
-                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+                print(f"   💰 {transfer.amount_pln} PLN | {transfer.date}")
