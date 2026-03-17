@@ -120,7 +120,7 @@ class TenantSettlement(BaseModel):
     rachunki: float
     suma_przelewow: float
     saldo: float
-    antoni_glupek: str
+    Filip_troll: str
 
 
 if __name__ == '__main__':
@@ -128,20 +128,42 @@ if __name__ == '__main__':
     manager = Manager(parameters)
 
     print("\n=== APARTAMENTY ===")
+
     for apartment in manager.apartments.values():
-        print(f"\n🏠 {apartment.name} ({apartment.location}) - {apartment.area_m2} m2")
+        print("Informacje o apartamencie_______")
+        print(apartment.key, apartment.name, apartment.location, apartment.area_m2)
+
+        
+        print(f"🏠 {apartment.name} ({apartment.location}) - {apartment.area_m2} m2")
 
         for room in apartment.rooms.values():
+            print("Nazwa pokoju oraz powierzchnia____________")
+            print('  ', room.name, room.area_m2)
+
+            
             print(f"   🛏️ {room.name} - {room.area_m2} m2")
         
         for bill in manager.bills:
             if bill.apartment == apartment.key:
-                print(f"   💸 {bill.type}: {bill.amount_pln} PLN (do {bill.date_due})")
+                print("Rachunek_________________")
+                print('  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
+
+                
+                print(f"   💸 {bill.type}: {bill.amount_pln} PLN | {bill.settlement_year}-{bill.settlement_month} (do {bill.date_due})")
 
     print("\n=== NAJEMCY ===")
+
     for tenant in manager.tenants.values():
-        print(f"\n👤 {tenant.name} | pokój: {tenant.room} | czynsz: {tenant.rent_pln} PLN")
+        print("Tenanty________________")
+        print(tenant.name, tenant.apartment, tenant.room, tenant.rent_pln, tenant.deposit_pln, tenant.date_agreement_from, tenant.date_agreement_to)
+
         
+        print(f"👤 {tenant.name} | pokój: {tenant.room} | czynsz: {tenant.rent_pln} PLN")
+
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
-                print(f"   💰 {transfer.amount_pln} PLN | {transfer.date}")
+                print("Przelew_____________")
+                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+
+                
+                print(f"   💰 {transfer.amount_pln} PLN | {transfer.settlement_year}-{transfer.settlement_month} | {transfer.date}")
