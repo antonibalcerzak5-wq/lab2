@@ -1,13 +1,13 @@
 {
     "apartament-polanka": {
-        "klucz": "apart-polanka",
-        "nazwa": "Polanka",
-        "lokalizacja": "Polanka 3a",
-        "powierzchnia_m2": 65,
+        "key": "apart-polanka",
+        "name": "Polanka",
+        "lokcation": "Polanka 3a",
+        "area_m2": 65,
         "pokoje": {
             "pokoj-duzy": {
                 "nazwa": "Duży pokój",
-                "powierzchnia_m2": 20
+                "area_m2": 20
             },
             "pokoj-maly": {
                 "nazwa": "Mały pokój",
